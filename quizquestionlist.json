@@ -1,0 +1,129 @@
+{
+	"games":[
+        {
+            "code":"1",
+            "question":"Imagine que você foi dar um mergulho no Oceano Pacífico e de repente encontra um polvo gigante, que se sente ameaçado e gruda em você. O que fazer para se salvar?",
+            "options":[
+                {
+                    "code":"1",
+                    "description":"Usar força bruta pra se soltar"
+                },
+                {
+                    "code":"2",
+                    "description":"Apertar as ventosas do polvo"
+                },
+                {
+                    "code":"3",
+                    "description":"Soltar o peso e voltar a superfície"
+                },
+                {
+                    "code":"4",
+                    "description":"Bater com força na cabeça do polvo"
+                }
+            ],
+            "quiz_option_code":"2",
+            "quiz_answer":"Apertar as ventosas do polvo",
+            "image_url":"https://img.ibxk.com.br/2018/05/16/polvo-16124804915106.jpg?w=1040"
+        },
+        {
+            "code":"2",
+            "question":"Imagine que uma mulher foi no zoológico pra tirar foto com um urso polar e o animal a pega pela perna. Você vê a cena e fica desesperado. O que fazer para salvar a moça?",
+            "options":[
+                {
+                    "code":"1",
+                    "description":"Abrir a boca do urso usando um galho"
+                },
+                {
+                    "code":"2",
+                    "description":"Bater com galhos no chão para assustar o urso"
+                },
+                {
+                    "code":"3",
+                    "description":"Acertar o rosto do urso"
+                },
+                {
+                    "code":"4",
+                    "description":"Tentar correr para longe do urso"
+                }
+            ],
+            "quiz_option_code":"2",
+            "quiz_answer":"Bater com galhos no chão para assustar o urso",
+            "image_url":"https://static.todamateria.com.br/upload/ur/so/urso-polar-og.jpg"
+        },
+        {
+            "code":"3",
+            "question":"Imagine que você foi esquiar na montanha e sem aviso você acaba caindo num grande buraco que estava escondido na neve ao redor de uma árvore. O que fazer para se salvar?",
+            "options":[
+                {
+                    "code":"1",
+                    "description":"Abrir espaço com as pernas para deixar o ar entrar"
+                },
+                {
+                    "code":"2",
+                    "description":"Abraçar a árvore"
+                },
+                {
+                    "code":"3",
+                    "description":"Cobrir a boca com as mãos"
+                },
+                {
+                    "code":"4",
+                    "description":"Tentar subir o buraco usando os esquis"
+                }
+            ],
+            "quiz_option_code":"3",
+            "quiz_answer":"Cobrir a boca com as mãos",
+            "image_url":"https://i.cbc.ca/1.2554074.1393533952!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_780/hi-tree-well-852-jpg.jpg"
+        },
+        {
+            "code":"4",
+            "question":"Imagine que você é passageiro no banco da frente de um avião monomotor e de repente o avião começa a perder a altitude. O que fazer para se salvar?",
+            "options":[
+                {
+                    "code":"1",
+                    "description":"Pular para o banco de trás e se preparar para a queda"
+                },
+                {
+                    "code":"2",
+                    "description":"Abrir a porta e proteger a cabeça"
+                },
+                {
+                    "code":"3",
+                    "description":"Abaixar a cabeça e colocá-la entre as pernas"
+                },
+                {
+                    "code":"4",
+                    "description":"Pular do avião quando estiver próximo ao solo"
+                }
+            ],
+            "quiz_option_code":"2",
+            "quiz_answer":"Abrir a porta e proteger a cabeça",
+            "image_url":"https://i.ytimg.com/vi/0iJ3sKJ7woo/maxresdefault.jpg"
+        },
+        {
+            "code":"5",
+            "question":"Imagine que você foi fazer um passeio de carro e de repente a estrada começa a ficar cercada de fogo. O que fazer para se salvar?",
+            "options":[
+                {
+                    "code":"1",
+                    "description":"Parar o carro e ligar o ar condicionado"
+                },
+                {
+                    "code":"2",
+                    "description":"Atravessar as chamas"
+                },
+                {
+                    "code":"3",
+                    "description":"Fugir das chamas"
+                },
+                {
+                    "code":"4",
+                    "description":"Parar o carro e ligar para os bombeiros"
+                }
+            ],
+            "quiz_option_code":"1",
+            "quiz_answer":"Parar o carro e ligar o ar condicionado",
+            "image_url":"https://www.gazetadopovo.com.br/ra/mega/Pub/GP/p4/2018/11/19/Mundo/Imagens/Cortadas/casal-dirige-por-estrada-chamas-RITVAWGgnCHybXbG1VV1FQO-1200x800@GP-Web.png"
+        }
+	]
+}
