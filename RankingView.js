@@ -4,6 +4,7 @@ import { StyleSheet, Text, TextInput,
 import * as firebase from 'firebase';
 
 var qtdAcertos = 0;
+var rankingUsuarios;
 
 export default class RankingView extends React.Component {
     static navigationOptions = {
@@ -17,20 +18,37 @@ export default class RankingView extends React.Component {
             color: 'white'
         }
     };
+
     constructor(props) {
         super(props);
-        this.state = { qtdAcertosTeste: 0 };
-        //this.showDetails = this.onClick.bind(this);// you should bind this to the method that call the props
+        this.state = { qtdAcertosTeste: 0, listaRanking: [] };
     }
-    componentWillMount() {
-        console.log("componentWillMount")
-        // qtdAcertos = this.props.navigation.state.params.param;
-        // if (qtdAcertos == null){
-        //     console.log('parm está nulo');
-        //     qtdAcertos = 0;
-        // }
-        // this.setState({ qtdAcertosTeste: qtdAcertos }); 
+
+    async componentWillMount() {
+        rankingUsuarios = await this.listarRankingUsuarios();
+        
+        let items = [];
+        rankingUsuarios.forEach(childSnapshot => {
+          items.push(childSnapshot.val());
+        });
+
+        let itemsRankeados = items.sort(function(a,b){
+            return b.qtdAcertosUsuario - a.qtdAcertosUsuario
+        });
+
+        this.setState({ listaRanking: itemsRankeados });
     }
+
+    async listarRankingUsuarios() {
+        try {
+            const currentUser = await firebase.auth().currentUser
+            const result = firebase.database().ref('users').once('value');
+            return result;
+          } catch (error) {
+            console.log(error.toString())
+          } 
+    }
+
     componentDidMount() {
         console.log("componentDidMount")  
     }
@@ -43,22 +61,17 @@ export default class RankingView extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={{flex: 1}}>
-                    <View style={{flex: 7, backgroundColor: 'steelblue', alignItems: 'center'}}>
-                        {/* <FlatList 
-                            data={this.state.gameData[this.state.perguntaAtual].options}
+                    <View style={{flex: 3, backgroundColor: 'steelblue', alignItems: 'center'}}>
+                        <FlatList 
+                            data={this.state.listaRanking}
                             renderItem={({item}) => 
                                 <View>
-                                    <Text style={{fontWeight: 'bold', fontSize: 5}}> </Text>
-                                    <Button style={styles.button}
-                                    onPress={() => 
-                                        this._handleAnswerClick(item.code)
-                                    }
-                                    title={item.description}/>
+                                    <Text style={{fontWeight: 'bold', fontSize: 7}}>  </Text>
+                                    <Text style={{fontWeight: 'bold', fontSize: 18, color: 'red'}}>Nome: {item.username} - Acertos: {item.qtdAcertosUsuario} - Data: {item.dataJogo}</Text>
                                 </View>
-                                // <Text>{item.description} teste</Text>
                             }
                             keyExtractor={(item, index) => index.toString()}
-                        /> */}
+                        />
                     </View>
                     <View style={{flex: 1, backgroundColor: 'steelblue'}}>
                     </View>

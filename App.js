@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, YellowBox } from 'react-native';
 import LoginView from './LoginView';
-import CriarLoginView from './CriarLoginView';
 import QuizView from './QuizView';
 import ResultadoView from './ResultadoView';
 import SignUpView from './SignUpView';
@@ -32,12 +31,16 @@ export default class App extends React.Component {
     this.setState({isAuthenticated: !!user});
   }
 
+  componentWillMount() {
+    console.log("componentWillMount")
+    firebase.auth().signOut();
+  }
+  componentDidMount() {
+      console.log("componentDidMount")  
+  }
+
   render() {
     return (
-      // <AppContainer/>
-      // <View style={styles.container}>
-      //   {(this.isAuthenticated) ? <AppContainer/> : <MainAppContainer /> }
-      // </View>
       (this.state.isAuthenticated) ? <MainAppContainer/> : <AppContainer />
     );
   }
@@ -45,9 +48,6 @@ export default class App extends React.Component {
 
 const AppNavigator = createStackNavigator({
   Home: LoginView,
-  CriarLogin: CriarLoginView,
-  //Quiz: QuizView,
-  //Resultado: ResultadoView,
   SignUp: SignUpView 
 }, {
   initialRouteName: "Home"

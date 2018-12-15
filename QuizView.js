@@ -5,6 +5,7 @@ import Style from './Style';
 import listaQuizLocal from './quizquestionlist.json';
 
 var qtdAcertos = 0;
+var foiParaTelaResultado = false;
 
 export default class LoginView extends React.Component {
     static navigationOptions = {
@@ -23,7 +24,6 @@ export default class LoginView extends React.Component {
         this.state = { gameData: listaQuizLocal.games,
                        perguntaAtual: 0,
                        qtdAcertosTeste: 0 };
-        //this.showDetails = this.onClick.bind(this);// you should bind this to the method that call the props
     }
     componentWillMount() {
         console.log("componentWillMount")
@@ -37,30 +37,30 @@ export default class LoginView extends React.Component {
     }
 
     _handleAnswerClick(itemCode){
-
-        console.log(itemCode);
-        console.log(this.state.gameData[this.state.perguntaAtual].quiz_option_code);
-        console.log(qtdAcertos + ' anterior');
         if (itemCode == this.state.gameData[this.state.perguntaAtual].quiz_option_code) {
             if (qtdAcertos == 0) {
                 qtdAcertos = 1;   
             } else {
                 qtdAcertos = qtdAcertos + 1;
             }
-            console.log('entrou no if do acerto'); 
         }
-        console.log(qtdAcertos + ' depois');
 
         this.setState({perguntaAtual: this.state.perguntaAtual + 1});
-        // console.log(this.state.perguntaAtual);
         var arrLength = this.state.gameData.length - 1;
-        // console.log(arrLength);
-        if (this.state.perguntaAtual >= arrLength) {
-            this.setState({perguntaAtual: 0});
-            this.props.navigation.navigate('Resultado', { param: qtdAcertos});
-            qtdAcertos = 0;
+
+        if(!foiParaTelaResultado) {
+            if (this.state.perguntaAtual >= arrLength) {
+                this.props.navigation.navigate('Resultado', { param: qtdAcertos });
+                this.setState({perguntaAtual: 0});
+                qtdAcertos = 0;
+                foiParaTelaResultado = true;                
+            } else {
+                this.props.navigation.navigate('Quiz');
+            }
         } else {
-            this.props.navigation.navigate('Quiz'); 
+            this.setState({perguntaAtual: 0});
+            qtdAcertos = 0;
+            foiParaTelaResultado = false;
         }
     }
 
@@ -69,10 +69,8 @@ export default class LoginView extends React.Component {
             <View style={styles.container}>
                 <View style={{flex: 1}}>
                     <View style={{flex: 4, backgroundColor: 'steelblue', alignItems: 'center'}}>
-                        {/* <Text style={{fontWeight: 'bold', fontSize: 110}}> </Text> */}
                         <Image
                             style={{width: 190, height: 120}}
-                            // source={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png'}}
                             source={{uri: this.state.gameData[this.state.perguntaAtual].image_url}}
                         />
                         <Text style={{fontWeight: 'bold', fontSize: 23, color: 'white'}}>{this.state.gameData[this.state.perguntaAtual].question}</Text>
@@ -88,22 +86,12 @@ export default class LoginView extends React.Component {
                                     }
                                     title={item.description}/>
                                 </View>
-                                // <Text>{item.description} teste</Text>
                             }
                             keyExtractor={(item, index) => index.toString()}
                         />
                     </View>
-                    {/* <View style={{flex: 2, backgroundColor: 'skyblue'}}>
-                    </View> */}
-                    {/* <View style={{flex: 1, backgroundColor: 'powderblue'}}>
-                    </View> */}
                 </View>
             </View>
-            // <View style={Style.rootContainer}>
-            //     <View style={Style.displayContainer}>
-            //         <Text style={Style.displayText}>{this.state.inputValue}</Text>
-            //     </View>
-            // </View>
         );
     }
 }

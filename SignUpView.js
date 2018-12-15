@@ -25,7 +25,8 @@ async insertUserData() {
               username: this.state.nome,
               email: this.state.email,
               profile_picture : 'url',
-              qtdAcertosUsuario: 0
+              qtdAcertosUsuario: 0,
+              dataJogo: null
               });
   } catch (error) {
       console.log(error.toString())
@@ -33,10 +34,6 @@ async insertUserData() {
 }
 
 handleSignUp = () => {
-  // TODO: Firebase stuff...
-  console.log(this.state.nome)
-  console.log(this.state.email)
-  console.log(this.state.password)
   if (this.state.nome == '' || this.state.email == '' || this.state.password == '') {
     Alert.alert("Todos os campos são de preenchimento obrigatório!")
     return
@@ -47,14 +44,13 @@ handleSignUp = () => {
     try {
       const currentUser = firebase.auth().currentUser
       const id  = currentUser.uid
-      console.log(currentUser)
-      console.log(id)
       const result = firebase.database()
           .ref('users/' + id).set({
               username: this.state.nome,
               email: this.state.email,
               profile_picture : 'url',
-              qtdAcertosUsuario: 0
+              qtdAcertosUsuario: 0,
+              dataJogo: null
               });
     } catch (error) {
       console.log(error.toString())
@@ -62,8 +58,6 @@ handleSignUp = () => {
   }, (error) => {
     Alert.alert(error.message);
   });
-
-  //this.insertUserData();
 }
 render() {
     return (
@@ -99,7 +93,6 @@ render() {
         <Button title="Cadastrar conta" onPress={this.handleSignUp} />
         <Text style={{fontWeight: 'bold', fontSize: 5}}> </Text>
         <Button
-          // title="Already have an account? Login"
           title="Já possui uma conta? Faça Login"
           onPress={() => this.props.navigation.navigate('Home')}
         />
